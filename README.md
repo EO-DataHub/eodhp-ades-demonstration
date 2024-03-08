@@ -10,3 +10,7 @@ Before using either of the provided example formats ensure you provide the user 
 ## Application Packages
 
 Currently we provide two examples of OGC Application Packages, both provided as part of the [EOEPCA deployment guide](https://github.com/EOEPCA/deployment-guide). Both processes resize images, provided either as a URL or a STAC item, by a given scale-percentage.
+
+## Pre-production Implementation
+
+Note, the examples in this repository are provided to demonstrate an initial version of the ADES being deployed to the EODH Platform and this is not representative of a final production release. We expect there to be further fine tuning to improve the integration here. If you do encounter any issues with a process not starting to execute, we recommend first deleting the process from the workspace using the **undeployProcess** function and then redeploying it again.
