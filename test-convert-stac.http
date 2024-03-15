@@ -2,8 +2,8 @@
 
 @logindetails=user:password 
 
-@scheme = http
-@ades = ades.dev.eodhp.eco-ke-staging.com
+@scheme = https
+@ades = ades.test.eodhp.eco-ke-staging.com
 @username=eric
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
