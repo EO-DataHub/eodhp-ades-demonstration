@@ -1,0 +1,117 @@
+## Before attempting to run please provide the user and password login details for the ADES endpoint
+
+@logindetails=user:password 
+
+@scheme = https
+@ades = ades.test.eodhp.eco-ke-staging.com
+@username=eric
+
+@deployStatus = {{deployProcessJson.response.headers.Location}}
+@executeStatus = {{executeProcess.response.headers.Location}}
+
+###
+
+# @name deleteProcess
+DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name listProcesses
+GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name deployProcessJson
+POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "executionUnit": {
+    "href": "https://raw.githubusercontent.com/EOEPCA/deployment-guide/main/deploy/samples/requests/processing/water-bodies-app.cwl",
+    "type": "application/cwl"
+  }
+}
+
+###
+
+# @name getDeployStatus
+GET {{deployStatus}} HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name getProcessDetails
+GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name executeProcess
+POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+Content-Type: application/json
+Prefer: respond-async
+
+{
+  "inputs": {
+    "stac_items": [
+      "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_10TFK_20210713_0_L2A",
+      "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2A_10TFK_20220524_0_L2A"
+    ],
+    "aoi": "-121.399,39.834,-120.74,40.472",
+    "epsg": "EPSG:4326",
+    "bands": [
+      "green",
+      "nir"
+    ]
+  }
+}
+
+###
+
+# @name getExecuteStatus
+GET {{executeStatus}} HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+
+# @name getProcessingResults
+GET {{executeStatus}}/results HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name undeployProcess
+DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name listJobs
+GET {{scheme}}://{{ades}}/{{username}}/ogc-api/jobs HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+
+###
+
+# @name deployProcessCWL
+POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+Content-Type: application/cwl+yaml
+
+< water-bodies-app.cwl
+
