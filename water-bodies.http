@@ -78,6 +78,29 @@ Prefer: respond-async
 
 ###
 
+# @name executeProcess
+POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+Content-Type: application/json
+Prefer: respond-async
+
+{
+  "inputs": {
+    "stac_items": [
+      "https://dev.eodatahub.org.uk/catalogue-data/element84-data/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A.json"     
+    ],
+    "aoi": "68.09, -6.42, 69.09, -5.43",
+    "epsg": "EPSG:4326",
+    "bands": [
+      "green",
+      "nir"
+    ]
+  }
+}
+
+###
+
 # @name getExecuteStatus
 GET {{executeStatus}} HTTP/1.1
 Authorization: Basic {{logindetails}}
