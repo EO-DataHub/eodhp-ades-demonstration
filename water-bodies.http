@@ -77,7 +77,7 @@ Prefer: respond-async
 }
 
 ###
-
+## Using resources from our own EO Data Hub Resource Catalogue
 # @name executeProcess
 POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
 Authorization: Basic {{logindetails}}
