@@ -3,7 +3,7 @@
 @logindetails=user:password 
 
 @scheme = https
-@ades = ades.test.eodhp.eco-ke-staging.com
+@ades = test.eodatahub.org.uk/ades
 @username=eric
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}

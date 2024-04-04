@@ -3,7 +3,7 @@
 @logindetails=user:password 
 
 @scheme = https
-@ades = ades.test.eodhp.eco-ke-staging.com
+@ades = test.eodatahub.org.uk/ades
 @username=eric
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
@@ -68,6 +68,29 @@ Prefer: respond-async
       "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2A_10TFK_20220524_0_L2A"
     ],
     "aoi": "-121.399,39.834,-120.74,40.472",
+    "epsg": "EPSG:4326",
+    "bands": [
+      "green",
+      "nir"
+    ]
+  }
+}
+
+###
+## Using resources from our own EO Data Hub Resource Catalogue
+# @name executeProcess
+POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
+Authorization: Basic {{logindetails}}
+Accept: application/json
+Content-Type: application/json
+Prefer: respond-async
+
+{
+  "inputs": {
+    "stac_items": [
+      "https://dev.eodatahub.org.uk/catalogue-data/element84-data/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A.json"     
+    ],
+    "aoi": "68.09, -6.42, 69.09, -5.43",
     "epsg": "EPSG:4326",
     "bands": [
       "green",
