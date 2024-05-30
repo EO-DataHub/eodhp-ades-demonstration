@@ -5,6 +5,7 @@
 @scheme = https
 @ades = test.eodatahub.org.uk/ades
 @username=eric
+@workspace = eric-workspace
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
 @executeStatus = {{executeProcess.response.headers.Location}}
@@ -63,6 +64,7 @@ Prefer: respond-async
 
 {
   "inputs": {
+    "workspace": "{{workspace}}",
     "stac_items": [
       "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_10TFK_20210713_0_L2A",
       "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2A_10TFK_20220524_0_L2A"
