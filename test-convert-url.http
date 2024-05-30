@@ -5,6 +5,7 @@
 @scheme = https
 @ades = test.eodatahub.org.uk/ades
 @username=eric
+@workspace = eric-workspace
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
 @executeStatus = {{executeProcess.response.headers.Location}}
@@ -63,6 +64,7 @@ Prefer: respond-async
 
 {
   "inputs": {
+      "workspace": "{{workspace}}",
       "fn": "resize",
       "url":  "https://eoepca.org/media_portal/images/logo6_med.original.png",
       "size": "50%"
