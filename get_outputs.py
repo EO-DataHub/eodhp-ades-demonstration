@@ -1,6 +1,4 @@
 import requests
-import jwt
-import secrets
 
 workspace = ''
 ades_job_id = ''
@@ -39,17 +37,6 @@ def get_outputs_cookie(url: str, token: str):
     print(response.status_code)
     print(response.text)
 
-def generate_token():
-    """Generate a JWT token with a secret key."""
-    # Generate a secret key
-    secret_key = secrets.token_hex(16)
-    # Define a payload
-    payload = {'key': 'value'}
-    # Encode the payload into a token
-    new_token = jwt.encode(payload, secret_key, algorithm='HS256')
-    token_str = new_token.decode('utf-8')
-    print(f'Secret Key: {secret_key}')
-    print(f'Token: {token_str}')
 
 if __name__ == '__main__':
     get_outputs_token(ades_output_url, workspace_token)
