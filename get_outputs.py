@@ -9,7 +9,7 @@ user_block_store_url = f'https://{workspace}.workspaces.test.eodhp.eco-ke-stagin
 
 
 def get_outputs_token(url: str, token: str):
-    """Test sending a request with token in Authorization header."""
+    """Send a request with token in Authorization header."""
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
     print(response.status_code)
@@ -18,8 +18,7 @@ def get_outputs_token(url: str, token: str):
     print(response.text)
 
 def get_outputs_range(url: str, token: str):
-    """Test sending a request with token in Authorization header and Range header."""
-    # Send request with token in Authorization header and Range header
+    """Send a request with token in Authorization header and Range header."""
     headers = {
         'Authorization': f'Bearer {token}',
         'Range': 'bytes=4-8'  # Request specific bytes of the file
@@ -31,7 +30,7 @@ def get_outputs_range(url: str, token: str):
     print(response.content)
 
 def get_outputs_cookie(url: str, token: str):
-    """Test sending a request with token in a cookie."""
+    """Send a request with token in a cookie."""
     cookies = {'session': token}
     response = requests.get(url, cookies=cookies)
     print(response.status_code)
