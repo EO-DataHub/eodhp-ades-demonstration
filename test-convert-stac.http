@@ -1,11 +1,10 @@
 ## Before attempting to run please provide the user and password login details for the ADES endpoint
 
-@logindetails=user:password 
+@api_token = <your-token>
 
 @scheme = https
 @ades = test.eodatahub.org.uk/ades
-@username=eric
-@workspace = eric-workspace
+@workspace = eric_workspace # replace "-" with "_" here
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
 @executeStatus = {{executeProcess.response.headers.Location}}
@@ -13,22 +12,22 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{logindetails}}
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listProcesses
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessJson
-POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 Content-Type: application/json
 
@@ -43,28 +42,27 @@ Content-Type: application/json
 
 # @name getDeployStatus
 GET {{deployStatus}} HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/convert-stac/execution HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac/execution HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 Content-Type: application/json
 Prefer: respond-async
 
 {
   "inputs": {
-      "workspace": "{{workspace}}",
       "fn": "resize",
       "stac":  "https://raw.githubusercontent.com/EOEPCA/convert/main/stac/eoepca-logo.json",
       "size": "50%"
@@ -75,7 +73,7 @@ Prefer: respond-async
 
 # @name getExecuteStatus
 GET {{executeStatus}} HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
@@ -83,28 +81,28 @@ Accept: application/json
 
 # @name getProcessingResults
 GET {{executeStatus}}/results HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{logindetails}}
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listJobs
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/jobs HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessCWL
-POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Basic {{api_token}}
 Accept: application/json
 Content-Type: application/cwl+yaml
 
