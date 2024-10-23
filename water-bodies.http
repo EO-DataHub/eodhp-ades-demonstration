@@ -1,11 +1,10 @@
-## Before attempting to run please provide the user and password login details for the ADES endpoint
+## Before attempting to run please provide your API Token in the following variable. You can generate this from the Hub website: https://test.eodatahub.org.uk/workspaces/
 
-@logindetails=user:password 
+@api_token = <your-token>
 
 @scheme = https
 @ades = test.eodatahub.org.uk/ades
-@username=eric
-@workspace = eric-workspace
+@workspace = eric_workspace # replace "-" with "_" here
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
 @executeStatus = {{executeProcess.response.headers.Location}}
@@ -13,22 +12,22 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
-Authorization: Basic {{logindetails}}
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listProcesses
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessJson
-POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 
@@ -43,21 +42,21 @@ Content-Type: application/json
 
 # @name getDeployStatus
 GET {{deployStatus}} HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST https://{{ades}}/{{workspace}}/ogc-api/processes/water-bodies/execution HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 Prefer: respond-async
@@ -81,8 +80,8 @@ Prefer: respond-async
 ###
 ## Using resources from our own EO Data Hub Resource Catalogue
 # @name executeProcess
-POST https://{{ades}}/{{username}}/ogc-api/processes/water-bodies/execution HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST https://{{ades}}/{{workspace}}/ogc-api/processes/water-bodies/execution HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 Prefer: respond-async
@@ -90,7 +89,7 @@ Prefer: respond-async
 {
   "inputs": {
     "stac_items": [
-      "https://dev.eodatahub.org.uk/catalogue-data/element84-data/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A.json"     
+      "https://test.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/earth-search-aws/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A"     
     ],
     "aoi": "68.09, -6.42, 69.09, -5.43",
     "epsg": "EPSG:4326",
@@ -105,7 +104,7 @@ Prefer: respond-async
 
 # @name getExecuteStatus
 GET {{executeStatus}} HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
@@ -113,28 +112,35 @@ Accept: application/json
 
 # @name getProcessingResults
 GET {{executeStatus}}/results HTTP/1.1
-Authorization: Basic {{logindetails}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{username}}/ogc-api/processes/water-bodies HTTP/1.1
-Authorization: Basic {{logindetails}}
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/water-bodies HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listJobs
-GET {{scheme}}://{{ades}}/{{username}}/ogc-api/jobs HTTP/1.1
-Authorization: Basic {{logindetails}}
+GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs HTTP/1.1
+Authorization: Bearer {{api_token}}
+Accept: application/json
+
+###
+
+# @name deleteJob
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs/<jobID> HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessCWL
-POST {{scheme}}://{{ades}}/{{username}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{logindetails}}
+POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/cwl+yaml
 
