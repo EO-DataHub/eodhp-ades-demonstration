@@ -89,7 +89,7 @@ Prefer: respond-async
 {
   "inputs": {
     "stac_items": [
-      "https://dev.eodatahub.org.uk/catalogue-data/element84-data/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A.json"     
+      "https://test.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/earth-search-aws/collections/sentinel-2-c1-l2a/items/S2B_T42MVU_20240319T054135_L2A"     
     ],
     "aoi": "68.09, -6.42, 69.09, -5.43",
     "epsg": "EPSG:4326",
