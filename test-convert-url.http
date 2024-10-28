@@ -1,4 +1,4 @@
-## Before attempting to run please provide the user and password login details for the ADES endpoint
+## Before attempting to run please provide your API Token in the following variable. You can generate this from the Hub website: https://test.eodatahub.org.uk/workspaces/
 
 @api_token = <your-token>
 
@@ -13,21 +13,21 @@
 
 # @name deleteProcess
 DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listProcesses
 GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessJson
 POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 
@@ -42,21 +42,21 @@ Content-Type: application/json
 
 # @name getDeployStatus
 GET {{deployStatus}} HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name getProcessDetails
 GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
 POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-url/execution HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 Prefer: respond-async
@@ -73,7 +73,7 @@ Prefer: respond-async
 
 # @name getExecuteStatus
 GET {{executeStatus}} HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
@@ -81,28 +81,35 @@ Accept: application/json
 
 # @name getProcessingResults
 GET {{executeStatus}}/results HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name undeployProcess
 DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listJobs
 GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
+Accept: application/json
+
+###
+
+# @name deleteJob
+DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs/<jobID> HTTP/1.1
+Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessCWL
 POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
-Authorization: Basic {{api_token}}
+Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/cwl+yaml
 
