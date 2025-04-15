@@ -15,7 +15,7 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
@@ -51,14 +51,14 @@ Accept: application/json
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac/execution HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac/execution HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
@@ -90,7 +90,7 @@ Accept: application/json
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 

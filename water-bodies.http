@@ -15,7 +15,7 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{workspace}}/{{workspaces_prefix}}/processes//water-bodies HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspace}}/{{workspaces_prefix}}/processes/water-bodies HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
@@ -51,14 +51,14 @@ Accept: application/json
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//water-bodies HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/water-bodies HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST https://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//water-bodies/execution HTTP/1.1
+POST https://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/water-bodies/execution HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
@@ -83,7 +83,7 @@ Prefer: respond-async
 ###
 ## Using resources from our own EO Data Hub Resource Catalogue
 # @name executeProcess
-POST https://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//water-bodies/execution HTTP/1.1
+POST https://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/water-bodies/execution HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
@@ -121,7 +121,7 @@ Accept: application/json
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//water-bodies HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/water-bodies HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
