@@ -36,7 +36,7 @@ Content-Type: application/json
 
 {
   "executionUnit": {
-    "href": "https://raw.githubusercontent.com/EOEPCA/deployment-guide/main/deploy/samples/requests/processing/convert-stac-app.cwl",
+    "href": "https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/refs/heads/main/convert-stac-app.cwl",
     "type": "application/cwl"
   }
 }

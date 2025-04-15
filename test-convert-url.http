@@ -15,28 +15,28 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listProcesses
-GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/ HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessJson
-POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/ HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 
 {
   "executionUnit": {
-    "href": "https://raw.githubusercontent.com/EOEPCA/deployment-guide/main/deploy/samples/requests/processing/convert-url-app.cwl",
+    "href": "https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/refs/heads/main/convert-url-app.cwl",
     "type": "application/cwl"
   }
 }
@@ -51,14 +51,14 @@ Accept: application/json
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-url/execution HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-url/execution HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
@@ -67,7 +67,7 @@ Prefer: respond-async
 {
   "inputs": {
       "fn": "resize",
-      "url":  "https://eoepca.org/media_portal/images/logo6_med.original.png",
+      "url":  "https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/refs/heads/main/DataHub-Logo.PNG",
       "size": "50%"
   }
 }
@@ -90,7 +90,7 @@ Accept: application/json
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes//convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
