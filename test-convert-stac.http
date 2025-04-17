@@ -1,10 +1,13 @@
-## Before attempting to run please provide your API Token in the following variable. You can generate this from the Hub website: https://test.eodatahub.org.uk/workspaces/
+## Before attempting to run please provide a workspace-scoped API Token in the `api_token` variable. 
+# You can generate this from the Hub website: https://prod.eodatahub.org.uk/workspaces/, making sure to 
+# select the correct workspace, as you have configured below in the `workspace` variable.
 
 @api_token = <your-token>
 
 @scheme = https
-@ades = test.eodatahub.org.uk/ades
-@workspace = eric_workspace # replace "-" with "_" here
+@ades = prod.eodatahub.org.uk/api/catalogue/stac
+@workspaces_prefix=catalogs/user/catalogs
+@workspace = <workspace-name>
 
 @deployStatus = {{deployProcessJson.response.headers.Location}}
 @executeStatus = {{executeProcess.response.headers.Location}}
@@ -12,28 +15,28 @@
 ###
 
 # @name deleteProcess
-DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listProcesses
-GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/ HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessJson
-POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/ HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
 
 {
   "executionUnit": {
-    "href": "https://raw.githubusercontent.com/EOEPCA/deployment-guide/main/deploy/samples/requests/processing/convert-stac-app.cwl",
+    "href": "https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/refs/heads/main/convert-stac-app.cwl",
     "type": "application/cwl"
   }
 }
@@ -48,14 +51,14 @@ Accept: application/json
 ###
 
 # @name getProcessDetails
-GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name executeProcess
-POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac/execution HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac/execution HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/json
@@ -87,28 +90,28 @@ Accept: application/json
 ###
 
 # @name undeployProcess
-DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes/convert-stac HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/convert-stac HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name listJobs
-GET {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs HTTP/1.1
+GET {{scheme}}://{{ades}}/{{workspace}}/jobs HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deleteJob
-DELETE {{scheme}}://{{ades}}/{{workspace}}/ogc-api/jobs/<jobID> HTTP/1.1
+DELETE {{scheme}}://{{ades}}/{{workspace}}/jobs/<jobID> HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 
 ###
 
 # @name deployProcessCWL
-POST {{scheme}}://{{ades}}/{{workspace}}/ogc-api/processes HTTP/1.1
+POST {{scheme}}://{{ades}}/{{workspaces_prefix}}/{{workspace}}/processes/ HTTP/1.1
 Authorization: Bearer {{api_token}}
 Accept: application/json
 Content-Type: application/cwl+yaml
