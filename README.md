@@ -1,4 +1,4 @@
-# eodhp-ades-demonstration
+# A Repository of Example Workflows, Notebooks and HTTP files to Demonstrate the EODH Workflow Runner
 
 ### Jupyter Notebook and HTTP files to test and demonstrate ADES deployment via OGC API endpoints, including two example OGC Application Packages that can be run
 
